@@ -1,0 +1,19 @@
+{
+        "univ_dir" : "./16_univ_data",
+        "group_size" : 4,
+        "nepochs" : 5,
+        "lr" : 0.1,
+        "inf_steps" : 20,
+        "checkpoint_phases" : 10,
+        "fwd_method" : "checkpoint",
+        "smooth_alpha" : 4.0,
+        "clamp_thr_lb" : 0.01,
+        "clamp_thr_ub" : 2.0,
+        "optimizer" : "AdamW",
+        "gap_slope" : 0.01,
+        "contra_slope" : 0.99,
+        "vacuity_mult" : 0.01,
+        "logical_mult" : 0.99,
+        "bound_mult" : 0.01,
+        "eps" : 0.01
+}
