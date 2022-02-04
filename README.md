@@ -5,30 +5,25 @@ The repository contains the code base for TensorLNN, a scalable implementation o
 
 ## Setting up the environment 
 
-
+```bash
+conda create -n tensorlnn python=3.9 numpy ipython matplotlib tqdm scipy
+conda activate tensorlnn
+conda install pytorch=1.10.0 torchvision torchaudio -c pytorch
 ```
-
-conda create -n lnn_scaling python=3.9 numpy ipython matplotlib
-conda activate lnn_scaling
-conda install pytorch=1.10.0 torchvision torchaudio  -c pytorch
-conda install tqdm
-
-```
-## Loa benchmark using Tensor Logical Neural Networks.
+## LOA benchmark using Tensor Logical Neural Networks.
 
 The loa benchmark employs a supervised training of TensorLNN where the training samples and ground truths are generated and the underlying formula is to be determined by training through the TensorLNN. 
 
 The benchmark  can be run by simply executing the following commands:
 
-```
+```bash
 cd examples/loa
 python atloc_lnn.py
-
 ```
 
 The top level program is `atloc_lnn.py`. The tensorLNN model is defined using the statement  `tensorlnn.NeuralNet(num_inputs, gpu_device, nepochs, lr, optimizer)`. Here,
 
-```
+```json
 {
         "num_inputs" : "number/of/nodes/whose/AND/is/to/be/determined",
         "gpu_device": /set/to/true/or/false/depending/on/gpu/or/cpu/run,
@@ -40,10 +35,9 @@ The top level program is `atloc_lnn.py`. The tensorLNN model is defined using th
 
 A simpler program to test the loa based on some random sample generation is implemented in `basic_lnn.py`. The program can be run by executing the following commands:
 
-```
+```bash
 cd examples/loa
 python basic_lnn.py <num_samples> <num_inputs>
-
 ```
 
 This will generate num_samples random positive training samples, each being a vector of length num_inputs, and accordingly train the propositional LNN on those samples.
@@ -55,14 +49,14 @@ TensorLNN for WSD involves unsupervised training using initial bounds of the nod
 This is done by executing the following commands.
 
 
-```
+```bash
 cd examples/wsd
 python wsd_main.py
 ```
 
 The top level program is `wsd_main.py`. The model construction and training parameter inputs need to be specified in `config.json`. A typical input is of the form:
 
-```
+```json
 {
         "univ_dir" : "path/to/universe/data/folder",
         "group_size" : "number/of/universes/merged/in/megauniverse",
@@ -83,6 +77,7 @@ The top level program is `wsd_main.py`. The model construction and training para
         "bound_mult" : \beta
 }
 ```
+
 Note: 
 --- "univ_dir" should have "global" and "local" subdirectories and "universes.txt". "universes.txt" should contain list of the universe ids. The "global" subdirectory should contain npz file specifying the adjacency matrix of the global LNN. The "local" subdirectory should have for each of the universe ids one subdirectory of the same name and that shall contain for that universe (i) npz file for the adjacency matrix of AND net (ii) npz file for the adjacency matrix of NOT net (iii) bounds file.  
 
